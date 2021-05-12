@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트에서 쿠키 사용</title>
+
+</head>
+<body>
+<form>
+<input type= button value="쿠키삭제" onClick="deleteCookie()">
+</form>
+<script type = "text/javascript">
+
+function getCookieValue(){
+	const result="false";
+	
+	//쿠키 여부 확인
+	// popUp,html에 의해서 브라우저에 설정된 쿠키의 값이 업지 않으면
+	// 예, notShowPop=true;path=/; expires=날짜문자열값
+
+	if(document.cookie !=""){
+		//alert(documet.cookie);
+		//document의 cookie 속성으로 모든 쿠키 정보를 하나의 문자열로 가져온 후,
+		//세미콜론(;)으로 분리해, 각가의 쿠키배열(myCookies)를 얻습니다.
+		//cookie 속성의 값이 --> 쿠키들의 문자열 배열이 됩니다.
+		const myCookies = document.cookie.split(";");
+		//alret(myCookies)
+		for(const i=0; i<myCookies.length; i++){
+			//각 cookie 배열의 요소를 =으로 분리해 각 쿠키하나의 이름과 값으로 구성된 배열을
+			// myCookies에 저장합니다.
+			 const myCookies=myCookies[i].split("=");
+			//myCookiesName에 쿠키이름이 저장됩니다.
+			 const myCookiesName=myCookies[0];
+			//정규식을 이용해 쿠키 이름 문자열의 공백 (\s)을 제거합니다.
+			myCookiesName=myCookiesName.replace(/^\s*/,'');
+			//쿠키 이름이 notShowPop이면, true나 false값을 
+			// result변수에 저장합니다.
+			if(value=="notShowPop"){
+				result=element[1];
+			}
+		}
+	} 		return result;
+}
+const notShowPop = null;
+
+
+
+window.onload = pageLoad;
+function pageLoad(){
+	//저장된 쿠키 읽어오기
+	//notShowPop의 쿠키 값을 getCookieValue() 함수를 호출하여 얻습니다.
+	 const notShowPop = getCookieValue();
+	const popUpOpton = "width=400px" + 
+						"height=500px,"+
+    					"history=yes,"+
+					    "resizable=no,"+
+					    "status=yes,"+
+					    "scrollbars=yes,"+
+					    "menubar=yes";
+	if(notShowPop!="true"){
+		window.open("popUp.html", "pop", popUpOption);
+		//window.open("popUp.html","pop","width=400px,height=500px,history=no,resizable=no,status=no,scrollbars=yes,menubar=no");
+		//popUp.html에 의해서 브라우저에 설정된 쿠키의 값을 읽어오는 함수입니다.
+		//dkfodml gkatnsms result 변수의 값("true" 또는 "false")을 반환합니다.
+	}
+}
+
+
+function deleteCookie(){
+	document.cookie = "notShowPop=false;path=/;expires=-1";
+}
+
+</script>
+
+</body>
+</html>
