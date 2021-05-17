@@ -1,0 +1,16 @@
+
+2-4실습1 (14p)
+SELECT employee_id, last_name, salary,email
+FROM hr.employees;
+
+SELECT employee_id, last_name, salary,email
+FROM hr.employees;
+
+2-4실습2 (14p)
+SELECT employee_id, first_name, salary, salary*0.05, 12*(salary+100)
+FROM hr.employees
+WHERE department_id=90;
+
+SELECT employee_id, first_name, salary, salary*0.05,12*(salary+100)
+FROM hr.employees
+WHERE department_id=90
