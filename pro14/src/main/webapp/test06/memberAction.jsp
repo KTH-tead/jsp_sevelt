@@ -4,7 +4,7 @@
 		 import="sec02.ex01.MemberBean"
 		 import="sec02.ex01.MemberDAO" %>
 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%	request.setCharacterEncoding("UTF-8"); %>
@@ -18,7 +18,7 @@
 <title>새회원 요청처리 JSP</title>
 </head>
 <body>
-<jsp:useBean id="memberBean" class="sec02.ex01.MemberBean" />
+<jsp:useBean id="memberBean" class="sec02.ex01.MemberBean" />	
 <jsp:setProperty name="memberBean" property="*"  />
 <jsp:useBean id="memberDAO" class="sec02.ex01.MemberDAO" />
 

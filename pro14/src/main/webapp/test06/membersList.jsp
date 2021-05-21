@@ -4,7 +4,7 @@
 		 import="sec02.ex01.MemberDAO"
 		 import="sec02.ex01.MemberBean" %>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 
 <%	request.setCharacterEncoding("UTF-8"); %>
