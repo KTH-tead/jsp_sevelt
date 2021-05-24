@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>로그인</title>
+</head>
+<body>
+	<div style="text-align:center;">
+		<h1>사용자 로그인</h1>
+		<form name="frmlogin">
+			<input type="text" name="id" placeholder="아이디를 입력하세요..." style="font-size:20px" ><p/>
+			<input type="password" name="password" placeholder="암호를 입력하세요..." style="font-size:20px"><br>
+
+			<hr width="40%">
+			<input type="button" value="&nbsp;로그인&nbsp;" onclick="loginValueCheck()" style="font-size:20px">
+			<input type="reset" value="다시입력" style="font-size:20px">
+		</form>
+	</div>
+
+	<hr width="40%">
+
+	<div style='text-align:center;'>
+		<a style="text-decoration:none;" href="/pro23/test03/memberForm.html">
+			<button type="button" style="font-size:20px;">
+				회원가입
+			</button>
+		</a>
+	</div>
+	
+	<script type="text/javascript">
+		function loginValueCheck(){
+			
+	  		var frmlogin=document.frmlogin;
+			
+	  		var id=frmlogin.id.value;
+			var password=frmlogin.password.value;
+			
+			if(id.length==0 ||id==""){
+				alert("아이디는 필수입니다.");
+				
+			} else if(password.length==0 ||password==""){
+				alert("비밀번호는 필수입니다.");
+				
+			} else {
+				frmlogin.method="post";
+				//frmlogin.action="memberLogin91";
+				frmlogin.action="/pro23/memberLogin16";
+				frmlogin.submit();
+			}
+		}
+	</script>
+</body>
+</html>

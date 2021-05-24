@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>회원 가입창</title>
+</head>
+<body>
+	<form name="frmMember" >
+		<table style="margin:auto;"> 
+			<caption>회원 가입창</caption>
+				<tr>
+					<td>아이디</td>
+					<td><input type="text" name="id" id="inputId"> 
+						<input type="button" id="btn_duplicate" value="ID 중복체크하기" onClick="duplicatedIdCheck()" />
+						<div id="message"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>비밀번호</td>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td>이름</td>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td><input type="text" name="email"></td>
+				</tr>
+				<tr>
+
+					<td colspan="2" style="text-align:center">
+						<input type="button" value="가입하기" onclick="sendMember()">
+						&nbsp;&nbsp;
+						<input type="reset" value="다시입력">
+					<!-- 	<input type="hidden" name="command" value="addMember" /> -->
+					</td>
+				</tr>
+		</table>
+	
+	</form>
+	
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script type="text/javascript">
+	function sendMember(){
+  			var frmMember=document.frmMember;
+		var id=frmMember.id.value;
+		var password=frmMember.password.value;
+		var name=frmMember.name.value;
+		var email=frmMember.email.value;
+		if(id.length==0 ||id==""){
+			alert("아이디는 필수입니다.");
+		} else if(password.length==0 ||password==""){
+			alert("비밀번호는 필수입니다.");
+		} else if(name.length==0 ||name==""){
+			alert("이름은 필수입니다.");
+		} else if(email.length==0 ||email==""){
+			alert("이메일은 필수입니다.");
+		} else {
+			frmMember.method="post";
+			//frmMember.action="memberAdd91"; //오류
+			frmMember.action="/pro16/memberAdd16";
+			frmMember.submit();
+		} 
+	}
+	
+	function duplicatedIdCheck(){
+		var _id = $("#inputId").val();//input의 입력값을 가져와서 _id변수에 저장 
+		
+		if(_id == ''){//_id가 Null이면
+			alert("ID를 입력하세요");//경고박스 표시하고
+			return; //종료
+		}//_id가 Null이 아니면, 아래의 내용을 수행.
+		
+		$.ajax({
+			type:"post",//의미를 스스로 알아보세요.
+			async:false,  //의미를 스스로 알아보세요.  
+			url:"http://172.16.5.31:8080/pro16/idDuplicateCheck",  //의미를 스스로 알아보세요.
+			dataType:"text", //의미를 스스로 알아보세요.
+			data: {id:_id},  //의미를 스스로 알아보세요.
+			success:function (data,textStatus){  //의미를 스스로 알아보세요.
+				if(data=='usable'){//전달받은 데이터가 usable이면
+					$('#message').text("사용할 수 있는 ID입니다.");//message 위치에 text()내용 표시
+					$('#btn_duplicate').prop("disabled", true);//btnDuplicate의 disabled property를 true로 설정 
+				}else{//전달받은 데이터가 usable이 아니면
+					$('#message').text("사용할 수 없는 ID입니다.");//message 위치에 text()내용 표시
+				}
+			},
+			error:function(data,textStatus){
+				alert("오류가 발생했습니다.");
+			}//,
+			//complete:function(data,textStatus){
+				//alert("작업을완료 했습니다");
+			//}
+		});  //end ajax	 
+	}	//End function duplicatedIdCheck
+</script>
+
+</body>
+</html>
